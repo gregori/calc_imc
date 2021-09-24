@@ -1,4 +1,7 @@
+import 'package:calc_imc/icon_content.dart';
+import 'package:calc_imc/reusable_card.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -20,11 +23,19 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: ReusableCard(
                       color: Color(0xFF1D1F33),
+                      child: IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        label: 'MASCULINO',
+                      ),
                     ),
                   ),
                   Expanded(
                     child: ReusableCard(
                       color: Color(0xFF1D1F33),
+                      child: IconContent(
+                        icon: FontAwesomeIcons.venus,
+                        label: 'FEMININO',
+                      ),
                     ),
                   ),
                 ],
@@ -53,22 +64,5 @@ class _InputPageState extends State<InputPage> {
             ),
           ],
         ));
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-  final Color color;
-
-  ReusableCard({required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-    );
   }
 }
