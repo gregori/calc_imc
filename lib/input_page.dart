@@ -17,6 +17,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
+  int height = 160;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class _InputPageState extends State<InputPage> {
           title: Text('Calculadora de IMC'),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: Row(
@@ -68,16 +70,19 @@ class _InputPageState extends State<InputPage> {
               child: ReusableCard(
                 color: kActiveCardColor,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'ALTURA',
                       style: kLabelTextStyle,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
-                          '180',
+                          height.toString(),
                           style: kNumberTextStyle,
                         ),
                         Text(
@@ -85,6 +90,16 @@ class _InputPageState extends State<InputPage> {
                           style: kLabelTextStyle,
                         ),
                       ],
+                    ),
+                    Slider(
+                      value: height.toDouble(),
+                      onChanged: (double value) {
+                        setState(() {
+                          height = value.round();
+                        });
+                      },
+                      min: 100,
+                      max: 220,
                     ),
                   ],
                 ),
