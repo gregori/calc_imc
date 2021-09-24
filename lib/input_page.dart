@@ -3,8 +3,7 @@ import 'package:calc_imc/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-const kActiveCardColor = Color(0xFF1D1F33);
-const kInactiveCardColor = Color(0xFF101427);
+import 'constants.dart';
 
 enum Gender {
   male,
@@ -68,6 +67,27 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: ReusableCard(
                 color: kActiveCardColor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      'ALTURA',
+                      style: kLabelTextStyle,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          '180',
+                          style: kNumberTextStyle,
+                        ),
+                        Text(
+                          'cm',
+                          style: kLabelTextStyle,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             Expanded(
