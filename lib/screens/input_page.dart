@@ -1,11 +1,11 @@
-import 'package:calc_imc/icon_content.dart';
-import 'package:calc_imc/result_page.dart';
-import 'package:calc_imc/reusable_card.dart';
-import 'package:calc_imc/round_icon_button.dart';
+import 'package:calc_imc/components/bottom_button.dart';
+import 'package:calc_imc/components/icon_content.dart';
+import 'package:calc_imc/components/reusable_card.dart';
+import 'package:calc_imc/components/round_icon_button.dart';
+import 'package:calc_imc/constants.dart';
+import 'package:calc_imc/screens/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'constants.dart';
 
 enum Gender {
   male,
@@ -223,7 +223,7 @@ class _InputPageState extends State<InputPage> {
                 ], /**/
               ),
             ),
-            GestureDetector(
+            BottomButton(
               onTap: () {
                 Navigator.push(
                   context,
@@ -232,16 +232,7 @@ class _InputPageState extends State<InputPage> {
                   ),
                 );
               },
-              child: Container(
-                child: Center(
-                  child: Text(
-                    'CALCULAR',
-                    style: kLargeButtonTextStyle,
-                  ),
-                ),
-                color: kButtonColor,
-                height: 80.0,
-              ),
+              title: 'CALCULAR',
             ),
           ],
         ));
