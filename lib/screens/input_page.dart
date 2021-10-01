@@ -1,3 +1,4 @@
+import 'package:calc_imc/bmi_calculator_brain.dart';
 import 'package:calc_imc/components/bottom_button.dart';
 import 'package:calc_imc/components/icon_content.dart';
 import 'package:calc_imc/components/reusable_card.dart';
@@ -160,7 +161,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.minus,
                                 onPressed: () {
                                   setState(() {
-                                    if (weight > 30) {
+                                    if (weight > 20) {
                                       weight--;
                                     }
                                   });
@@ -225,10 +226,17 @@ class _InputPageState extends State<InputPage> {
             ),
             BottomButton(
               onTap: () {
+                BMICalculatorBrain calc =
+                    BMICalculatorBrain(height: height, weight: weight);
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ResultPage(),
+                    builder: (context) => ResultPage(
+                      bmiResult: calc.getBMIAsString(),
+                      resultText: calc.getResult(),
+                      interpretation: calc.getInterpretation(),
+                    ),
                   ),
                 );
               },
