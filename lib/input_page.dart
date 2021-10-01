@@ -1,4 +1,5 @@
 import 'package:calc_imc/icon_content.dart';
+import 'package:calc_imc/result_page.dart';
 import 'package:calc_imc/reusable_card.dart';
 import 'package:calc_imc/round_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +21,13 @@ class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 160;
   int weight = 60;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Calculadora de IMC'),
+          title: Text(kAppTitle),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -144,7 +146,9 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.plus,
                                 onPressed: () {
                                   setState(() {
-                                    weight++;
+                                    if (weight < 150) {
+                                      weight++;
+                                    }
                                   });
                                 },
                               ),
@@ -156,7 +160,9 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.minus,
                                 onPressed: () {
                                   setState(() {
-                                    weight--;
+                                    if (weight > 30) {
+                                      weight--;
+                                    }
                                   });
                                 },
                               ),
@@ -169,9 +175,72 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: ReusableCard(
                       color: kActiveCardColor,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'IDADE',
+                            style: kLabelTextStyle,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kNumberTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                color: Color(0xFF4C4F5E),
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    if (age < 100) {
+                                      age++;
+                                    }
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              RoundIconButton(
+                                color: Color(0xFF4C4F5E),
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    if (age > 18) {
+                                      age--;
+                                    }
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ],
+                ], /**/
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultPage(),
+                  ),
+                );
+              },
+              child: Container(
+                child: Center(
+                  child: Text(
+                    'CALCULAR',
+                    style: kLargeButtonTextStyle,
+                  ),
+                ),
+                color: kButtonColor,
+                height: 80.0,
               ),
             ),
           ],
